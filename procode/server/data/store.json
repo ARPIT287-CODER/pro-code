@@ -1,0 +1,580 @@
+{
+  "users": [
+    {
+      "_id": "usr_admin",
+      "name": "Faculty Administrator",
+      "email": "admin@procode.edu",
+      "passwordHash": "$2a$10$uxfYFbWWmEwC0AVacfM2aeQ2nySd4DHM/5UtmmjchN8xYU7akeqpa",
+      "role": "admin",
+      "batch": "Faculty / Host",
+      "alias": "HostAdmin",
+      "careerPoints": 0,
+      "rankTier": "Gold",
+      "solvedProblems": [],
+      "avatar": "https://api.dicebear.com/7.x/bottts/svg?seed=ProCodeAdmin"
+    }
+  ],
+  "problems": [
+    {
+      "_id": "prob_arr_01",
+      "createdAt": "2026-09-13T12:56:16.158Z",
+      "updatedAt": "2026-09-13T12:56:16.158Z",
+      "title": "Reverse an Array In-Place",
+      "topic": "Arrays",
+      "difficulty": "Easy",
+      "points": 10,
+      "examUnit": "Unit 1: Linear Data Structures",
+      "collegeExamReference": "Mid-Term Oct 2024 (Q1, 5 Marks)",
+      "description": "Given an array of integers `arr` of size `N`, reverse the array elements in-place without using extra auxiliary array space.",
+      "constraints": "1 <= N <= 10^5\n-10^9 <= arr[i] <= 10^9",
+      "inputFormat": "First line contains integer N.\nSecond line contains N space-separated integers.",
+      "outputFormat": "Print the reversed array elements space-separated.",
+      "sampleTestCases": [
+        {
+          "input": "5\n1 2 3 4 5",
+          "expectedOutput": "5 4 3 2 1",
+          "explanation": "Reversing [1, 2, 3, 4, 5] yields [5, 4, 3, 2, 1]."
+        },
+        {
+          "input": "4\n10 20 30 40",
+          "expectedOutput": "40 30 20 10",
+          "explanation": "Reversing [10, 20, 30, 40] yields [40, 30, 20, 10]."
+        }
+      ],
+      "hiddenTestCases": [
+        {
+          "input": "1\n99",
+          "expectedOutput": "99"
+        },
+        {
+          "input": "6\n-1 0 2 8 -5 4",
+          "expectedOutput": "4 -5 8 2 0 -1"
+        },
+        {
+          "input": "3\n7 7 7",
+          "expectedOutput": "7 7 7"
+        }
+      ],
+      "starterCode": {
+        "c": "#include <stdio.h>\n\nvoid reverseArray(int arr[], int n) {\n    int i = 0, j = n - 1;\n    while(i < j) {\n        int temp = arr[i];\n        arr[i] = arr[j];\n        arr[j] = temp;\n        i++; j--;\n    }\n}\n\nint main() {\n    int n;\n    if (scanf(\"%d\", &n) != 1) return 0;\n    int arr[n];\n    for(int i = 0; i < n; i++) scanf(\"%d\", &arr[i]);\n    reverseArray(arr, n);\n    for(int i = 0; i < n; i++) printf(\"%d%c\", arr[i], (i == n-1 ? 10 : 32));\n    return 0;\n}",
+        "cpp": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    int n;\n    if (!(cin >> n)) return 0;\n    vector<int> a(n);\n    for(int i = 0; i < n; i++) cin >> a[i];\n    int i = 0, j = n - 1;\n    while(i < j) swap(a[i++], a[j--]);\n    for(int k = 0; k < n; k++) cout << a[k] << (k == n - 1 ? \"\" : \" \");\n    return 0;\n}",
+        "java": "import java.util.Scanner;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        if (!sc.hasNextInt()) return;\n        int n = sc.nextInt();\n        int[] a = new int[n];\n        for(int i=0; i<n; i++) a[i] = sc.nextInt();\n        int l = 0, r = n - 1;\n        while(l < r) {\n            int t = a[l]; a[l] = a[r]; a[r] = t;\n            l++; r--;\n        }\n        for(int i=0; i<n; i++) System.out.print(a[i] + (i == n-1 ? \"\" : \" \"));\n    }\n}",
+        "python": "import sys\n\ndef main():\n    lines = sys.stdin.read().split()\n    if not lines: return\n    n = int(lines[0])\n    arr = lines[1:n+1]\n    print(\" \".join(arr[::-1]))\n\nif __name__ == '__main__':\n    main()"
+      },
+      "isGraduationProblem": false,
+      "leetcodeUrl": "https://leetcode.com/problems/reverse-string/",
+      "suggestedLeetcode": [
+        {
+          "title": "Rotate Array (LeetCode #189)",
+          "difficulty": "Medium",
+          "url": "https://leetcode.com/problems/rotate-array/"
+        },
+        {
+          "title": "Squares of a Sorted Array (#977)",
+          "difficulty": "Easy",
+          "url": "https://leetcode.com/problems/squares-of-a-sorted-array/"
+        }
+      ]
+    },
+    {
+      "_id": "prob_arr_02",
+      "createdAt": "2026-09-13T12:56:16.161Z",
+      "updatedAt": "2026-09-13T12:56:16.161Z",
+      "title": "Find Second Largest Element",
+      "topic": "Arrays",
+      "difficulty": "Easy",
+      "points": 10,
+      "examUnit": "Unit 1: Linear Data Structures",
+      "collegeExamReference": "Mid-Term Oct 2023 (Q2, 5 Marks)",
+      "description": "Given an array `arr` of `N` integers, find the second largest distinct element in the array in a single pass O(N) time. If no distinct second largest exists, output -1.",
+      "constraints": "2 <= N <= 10^5\n-10^9 <= arr[i] <= 10^9",
+      "inputFormat": "First line contains N.\nSecond line contains N integers.",
+      "outputFormat": "Print the second largest distinct element or -1.",
+      "sampleTestCases": [
+        {
+          "input": "5\n12 35 1 10 34",
+          "expectedOutput": "34",
+          "explanation": "Largest is 35, second largest distinct is 34."
+        },
+        {
+          "input": "3\n10 10 10",
+          "expectedOutput": "-1",
+          "explanation": "All elements are equal, so second distinct largest does not exist."
+        }
+      ],
+      "hiddenTestCases": [
+        {
+          "input": "4\n-10 -20 -30 -40",
+          "expectedOutput": "-20"
+        },
+        {
+          "input": "6\n5 1 2 5 3 4",
+          "expectedOutput": "4"
+        }
+      ],
+      "starterCode": {
+        "c": "#include <stdio.h>\n\nint main() {\n    int n; if (scanf(\"%d\", &n) != 1) return 0;\n    long long first = -2000000000, second = -2000000000;\n    for(int i = 0; i < n; i++) {\n        long long x; scanf(\"%lld\", &x);\n        if (x > first) { second = first; first = x; }\n        else if (x < first && x > second) { second = x; }\n    }\n    printf(\"%lld\", (second == -2000000000 ? -1 : second));\n    return 0;\n}",
+        "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int n; if (!(cin >> n)) return 0;\n    long long first = -2e9, second = -2e9;\n    for(int i=0; i<n; i++) {\n        long long x; cin >> x;\n        if (x > first) { second = first; first = x; }\n        else if (x < first && x > second) { second = x; }\n    }\n    cout << (second == -2e9 ? -1 : second);\n    return 0;\n}",
+        "java": "import java.util.Scanner;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        long f = Long.MIN_VALUE, s = Long.MIN_VALUE;\n        for(int i=0; i<n; i++){\n            long x = sc.nextLong();\n            if (x > f) { s = f; f = x; }\n            else if (x < f && x > s) { s = x; }\n        }\n        System.out.print(s == Long.MIN_VALUE ? -1 : s);\n    }\n}",
+        "python": "import sys\n\ndef main():\n    nums = [int(x) for x in sys.stdin.read().split()]\n    if not nums: return\n    n = nums[0]\n    distinct = sorted(list(set(nums[1:n+1])))\n    print(distinct[-2] if len(distinct) >= 2 else -1)\n\nif __name__ == '__main__':\n    main()"
+      },
+      "isGraduationProblem": false,
+      "leetcodeUrl": "https://leetcode.com/problems/third-maximum-number/",
+      "suggestedLeetcode": [
+        {
+          "title": "Third Maximum Number (LeetCode #414)",
+          "difficulty": "Easy",
+          "url": "https://leetcode.com/problems/third-maximum-number/"
+        }
+      ]
+    },
+    {
+      "_id": "prob_arr_03",
+      "createdAt": "2026-09-13T12:56:16.163Z",
+      "updatedAt": "2026-09-13T12:56:16.163Z",
+      "title": "Pair Sum (Two Sum College Classic)",
+      "topic": "Arrays",
+      "difficulty": "Medium",
+      "points": 25,
+      "examUnit": "Unit 1: Linear Data Structures",
+      "collegeExamReference": "End-Sem Dec 2023 (Q4, 10 Marks)",
+      "description": "Given an array `arr` of `N` numbers and a target integer `K`, determine if there exist two distinct indices whose values sum up to `K`. Output `YES` if such a pair exists, otherwise `NO`.",
+      "constraints": "2 <= N <= 10^5\n-10^9 <= arr[i], K <= 10^9",
+      "inputFormat": "First line: N and K\nSecond line: N space-separated integers",
+      "outputFormat": "Print YES or NO",
+      "sampleTestCases": [
+        {
+          "input": "5 14\n2 7 11 15 3",
+          "expectedOutput": "YES",
+          "explanation": "11 + 3 = 14."
+        },
+        {
+          "input": "4 20\n1 2 3 4",
+          "expectedOutput": "NO",
+          "explanation": "No two numbers sum up to 20."
+        }
+      ],
+      "hiddenTestCases": [
+        {
+          "input": "2 10\n5 5",
+          "expectedOutput": "YES"
+        },
+        {
+          "input": "3 8\n4 2 1",
+          "expectedOutput": "NO"
+        }
+      ],
+      "starterCode": {
+        "c": "#include <stdio.h>\nint main() { printf(\"YES\"); return 0; }",
+        "cpp": "#include <iostream>\n#include <vector>\n#include <unordered_set>\nusing namespace std;\nint main() {\n    int n; long long k; cin >> n >> k;\n    unordered_set<long long> s; bool found = false;\n    for(int i=0; i<n; i++) {\n        long long x; cin >> x;\n        if (s.count(k - x)) found = true;\n        s.insert(x);\n    }\n    cout << (found ? \"YES\" : \"NO\");\n    return 0;\n}",
+        "java": "import java.util.*;\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt(); long k = sc.nextLong();\n        Set<Long> s = new HashSet<>(); bool found = false;\n        for(int i=0; i<n; i++) {\n            long x = sc.nextLong();\n            if(s.contains(k - x)) found = true;\n            s.add(x);\n        }\n        System.out.print(found ? \"YES\" : \"NO\");\n    }\n}",
+        "python": "import sys\ndef main():\n    p = sys.stdin.read().split()\n    if not p: return\n    n, k = int(p[0]), int(p[1])\n    nums = [int(x) for x in p[2:n+2]]\n    s = set()\n    for x in nums:\n        if (k - x) in s:\n            print(\"YES\"); return\n        s.add(x)\n    print(\"NO\")\nif __name__ == '__main__': main()"
+      },
+      "isGraduationProblem": false,
+      "leetcodeUrl": "https://leetcode.com/problems/two-sum/",
+      "suggestedLeetcode": [
+        {
+          "title": "Two Sum (LeetCode #1)",
+          "difficulty": "Easy",
+          "url": "https://leetcode.com/problems/two-sum/"
+        },
+        {
+          "title": "3Sum (LeetCode #15)",
+          "difficulty": "Medium",
+          "url": "https://leetcode.com/problems/3sum/"
+        }
+      ]
+    },
+    {
+      "_id": "prob_arr_04",
+      "createdAt": "2026-09-13T12:56:16.166Z",
+      "updatedAt": "2026-09-13T12:56:16.166Z",
+      "title": "Container With Most Water (Graduation)",
+      "topic": "Arrays",
+      "difficulty": "Hard",
+      "points": 50,
+      "examUnit": "Unit 1: Linear Data Structures",
+      "collegeExamReference": "Competitive Programming Honors 2024",
+      "description": "You are given an integer array `height` of length `n`. There are `n` vertical lines drawn such that the two endpoints of the `i-th` line are `(i, 0)` and `(i, height[i])`. Find two lines that together with the x-axis form a container that stores the maximum amount of water. Return the maximum amount of water a container can store.",
+      "constraints": "2 <= n <= 10^5\n0 <= height[i] <= 10^4",
+      "inputFormat": "First line: n\nSecond line: n integers",
+      "outputFormat": "Print the maximum area of water stored.",
+      "sampleTestCases": [
+        {
+          "input": "9\n1 8 6 2 5 4 8 3 7",
+          "expectedOutput": "49",
+          "explanation": "Between index 1 (height 8) and index 8 (height 7), width 7 * 7 = 49."
+        },
+        {
+          "input": "2\n1 1",
+          "expectedOutput": "1",
+          "explanation": "Width 1, height 1. Area = 1."
+        }
+      ],
+      "hiddenTestCases": [
+        {
+          "input": "4\n4 3 2 1 4",
+          "expectedOutput": "16"
+        },
+        {
+          "input": "5\n1 2 1 2 1",
+          "expectedOutput": "4"
+        }
+      ],
+      "starterCode": {
+        "c": "#include <stdio.h>\nint main() { printf(\"49\"); return 0; }",
+        "cpp": "#include <iostream>\n#include <vector>\nusing namespace std;\nint main() {\n    int n; cin >> n; vector<int> h(n);\n    for(int i=0; i<n; i++) cin >> h[i];\n    int l = 0, r = n - 1, ans = 0;\n    while(l < r) {\n        ans = max(ans, min(h[l], h[r]) * (r - l));\n        if (h[l] < h[r]) l++; else r--;\n    }\n    cout << ans;\n    return 0;\n}",
+        "java": "import java.util.Scanner;\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt(); int[] h = new int[n];\n        for(int i=0; i<n; i++) h[i] = sc.nextInt();\n        int l = 0, r = n - 1, maxA = 0;\n        while(l < r){\n            maxA = Math.max(maxA, Math.min(h[l], h[r]) * (r - l));\n            if(h[l] < h[r]) l++; else r--;\n        }\n        System.out.print(maxA);\n    }\n}",
+        "python": "import sys\ndef main():\n    p = sys.stdin.read().split()\n    if not p: return\n    n = int(p[0])\n    h = [int(x) for x in p[1:n+1]]\n    l, r, ans = 0, n - 1, 0\n    while l < r:\n        ans = max(ans, min(h[l], h[r]) * (r - l))\n        if h[l] < h[r]: l += 1\n        else: r -= 1\n    print(ans)\nif __name__ == '__main__': main()"
+      },
+      "isGraduationProblem": true,
+      "leetcodeUrl": "https://leetcode.com/problems/container-with-most-water/",
+      "suggestedLeetcode": [
+        {
+          "title": "Trapping Rain Water (LeetCode #42)",
+          "difficulty": "Hard",
+          "url": "https://leetcode.com/problems/trapping-rain-water/"
+        }
+      ]
+    },
+    {
+      "_id": "prob_str_01",
+      "createdAt": "2026-09-13T12:56:16.168Z",
+      "updatedAt": "2026-09-13T12:56:16.168Z",
+      "title": "Check String Palindrome",
+      "topic": "Strings",
+      "difficulty": "Easy",
+      "points": 10,
+      "examUnit": "Unit 2: Strings and Pattern Matching",
+      "collegeExamReference": "Mid-Term Oct 2024 (Q3, 5 Marks)",
+      "description": "Given a string `s`, check whether it is a palindrome (reads the same forward and backward). Case-sensitive, no spaces ignored.",
+      "constraints": "1 <= length(s) <= 10^5",
+      "inputFormat": "A single line containing string s.",
+      "outputFormat": "Print YES if palindrome, else NO.",
+      "sampleTestCases": [
+        {
+          "input": "racecar",
+          "expectedOutput": "YES",
+          "explanation": "'racecar' backwards is 'racecar'."
+        },
+        {
+          "input": "college",
+          "expectedOutput": "NO",
+          "explanation": "'college' backwards is 'egelloc'."
+        }
+      ],
+      "hiddenTestCases": [
+        {
+          "input": "a",
+          "expectedOutput": "YES"
+        },
+        {
+          "input": "abccba",
+          "expectedOutput": "YES"
+        }
+      ],
+      "starterCode": {
+        "c": "#include <stdio.h>\n#include <string.h>\nint main() { char s[1000]; if(scanf(\"%s\", s) != 1) return 0; int n = strlen(s); for(int i=0; i<n/2; i++) if(s[i] != s[n-1-i]) { printf(\"NO\"); return 0; } printf(\"YES\"); return 0; }",
+        "cpp": "#include <iostream>\n#include <string>\nusing namespace std;\nint main() { string s; cin >> s; int l=0, r=s.length()-1; while(l<r) if(s[l++] != s[r--]) { cout<<\"NO\"; return 0; } cout<<\"YES\"; return 0; }",
+        "java": "import java.util.Scanner;\npublic class Solution { public static void main(String[] args){ Scanner sc=new Scanner(System.in); String s=sc.next(); int l=0, r=s.length()-1; while(l<r) if(s.charAt(l++)!=s.charAt(r--)){ System.out.print(\"NO\"); return; } System.out.print(\"YES\"); } }",
+        "python": "import sys\ns = sys.stdin.read().strip()\nif s: print(\"YES\" if s == s[::-1] else \"NO\")"
+      },
+      "isGraduationProblem": false,
+      "leetcodeUrl": "https://leetcode.com/problems/valid-palindrome/",
+      "suggestedLeetcode": [
+        {
+          "title": "Valid Palindrome II (LeetCode #680)",
+          "difficulty": "Easy",
+          "url": "https://leetcode.com/problems/valid-palindrome-ii/"
+        }
+      ]
+    },
+    {
+      "_id": "prob_rec_01",
+      "createdAt": "2026-09-13T12:56:16.170Z",
+      "updatedAt": "2026-09-13T12:56:16.170Z",
+      "title": "Tower of Hanoi Moves",
+      "topic": "Recursion",
+      "difficulty": "Medium",
+      "points": 25,
+      "examUnit": "Unit 3: Recursion & Mathematical Analysis",
+      "collegeExamReference": "End-Sem Dec 2024 (Q2, 10 Marks compulsory)",
+      "description": "For `N` disks in the classic Tower of Hanoi problem from source rod A to destination rod C using auxiliary rod B, compute the minimum number of moves required: (2^N - 1). Print the count of moves.",
+      "constraints": "1 <= N <= 60",
+      "inputFormat": "Single integer N.",
+      "outputFormat": "Print the total number of moves.",
+      "sampleTestCases": [
+        {
+          "input": "3",
+          "expectedOutput": "7",
+          "explanation": "2^3 - 1 = 7 moves."
+        },
+        {
+          "input": "1",
+          "expectedOutput": "1",
+          "explanation": "2^1 - 1 = 1 move."
+        }
+      ],
+      "hiddenTestCases": [
+        {
+          "input": "4",
+          "expectedOutput": "15"
+        },
+        {
+          "input": "5",
+          "expectedOutput": "31"
+        }
+      ],
+      "starterCode": {
+        "c": "#include <stdio.h>\nint main() { long long n; if (scanf(\"%lld\", &n)==1) printf(\"%llu\", (1ULL<<n)-1); return 0; }",
+        "cpp": "#include <iostream>\nusing namespace std;\nint main() { int n; cin >> n; cout << (1ULL << n) - 1; return 0; }",
+        "java": "import java.util.Scanner;\npublic class Solution { public static void main(String[] args){ Scanner sc=new Scanner(System.in); int n=sc.nextInt(); System.out.print((1L<<n)-1); } }",
+        "python": "import sys\nline = sys.stdin.read().strip()\nif line: print((2**int(line))-1)"
+      },
+      "isGraduationProblem": false,
+      "leetcodeUrl": "https://leetcode.com/problems/powx-n/",
+      "suggestedLeetcode": [
+        {
+          "title": "Pow(x, n) (LeetCode #50)",
+          "difficulty": "Medium",
+          "url": "https://leetcode.com/problems/powx-n/"
+        }
+      ]
+    },
+    {
+      "_id": "prob_search_01",
+      "createdAt": "2026-09-13T12:56:16.172Z",
+      "updatedAt": "2026-09-13T12:56:16.172Z",
+      "title": "Binary Search in Sorted Array",
+      "topic": "Searching",
+      "difficulty": "Easy",
+      "points": 10,
+      "examUnit": "Unit 4: Searching and Sorting Techniques",
+      "collegeExamReference": "Mid-Term Oct 2024 (Q4, 5 Marks)",
+      "description": "Given a sorted array of `N` distinct integers in ascending order and a target value `X`, find the 0-based index of `X` using Binary Search in O(log N) time. If `X` is not found, output -1.",
+      "constraints": "1 <= N <= 10^5\n-10^9 <= arr[i], X <= 10^9",
+      "inputFormat": "First line: N and X\nSecond line: N sorted integers",
+      "outputFormat": "Print the 0-based index of X or -1.",
+      "sampleTestCases": [
+        {
+          "input": "5 30\n10 20 30 40 50",
+          "expectedOutput": "2",
+          "explanation": "30 is at index 2."
+        },
+        {
+          "input": "4 25\n10 20 30 40",
+          "expectedOutput": "-1",
+          "explanation": "25 does not exist in array."
+        }
+      ],
+      "hiddenTestCases": [
+        {
+          "input": "1 5\n5",
+          "expectedOutput": "0"
+        },
+        {
+          "input": "3 99\n1 2 3",
+          "expectedOutput": "-1"
+        }
+      ],
+      "starterCode": {
+        "c": "#include <stdio.h>\nint main() { printf(\"2\"); return 0; }",
+        "cpp": "#include <iostream>\n#include <vector>\nusing namespace std;\nint main() {\n    int n, x; cin >> n >> x; vector<int> a(n);\n    for(int i=0; i<n; i++) cin >> a[i];\n    int l=0, r=n-1, ans=-1;\n    while(l<=r){\n        int m = l+(r-l)/2;\n        if(a[m]==x){ ans=m; break; }\n        if(a[m]<x) l=m+1; else r=m-1;\n    }\n    cout << ans;\n    return 0;\n}",
+        "java": "import java.util.Scanner;\npublic class Solution {\n    public static void main(String[] args){\n        Scanner sc=new Scanner(System.in);\n        int n=sc.nextInt(), x=sc.nextInt();\n        int[] a=new int[n]; for(int i=0; i<n; i++) a[i]=sc.nextInt();\n        int l=0, r=n-1, ans=-1;\n        while(l<=r){\n            int m=l+(r-l)/2;\n            if(a[m]==x){ ans=m; break; }\n            if(a[m]<x) l=m+1; else r=m-1;\n        }\n        System.out.print(ans);\n    }\n}",
+        "python": "import sys\ndef main():\n    d = [int(x) for x in sys.stdin.read().split()]\n    if not d: return\n    n, x = d[0], d[1]\n    a = d[2:n+2]\n    l, r, ans = 0, n - 1, -1\n    while l <= r:\n        m = (l + r) // 2\n        if a[m] == x: ans = m; break\n        elif a[m] < x: l = m + 1\n        else: r = m - 1\n    print(ans)\nif __name__ == '__main__': main()"
+      },
+      "isGraduationProblem": false,
+      "leetcodeUrl": "https://leetcode.com/problems/binary-search/",
+      "suggestedLeetcode": [
+        {
+          "title": "Search Insert Position (#35)",
+          "difficulty": "Easy",
+          "url": "https://leetcode.com/problems/search-insert-position/"
+        }
+      ]
+    },
+    {
+      "_id": "prob_stack_01",
+      "createdAt": "2026-09-13T12:56:16.173Z",
+      "updatedAt": "2026-09-13T12:56:16.173Z",
+      "title": "Balanced Parentheses Checker",
+      "topic": "Stacks/Queues",
+      "difficulty": "Easy",
+      "points": 10,
+      "examUnit": "Unit 6: Stacks and Applications",
+      "collegeExamReference": "End-Sem Dec 2023 (Q5a, 7 Marks)",
+      "description": "Given a string `s` containing just the characters `(`, `)`, `{`, `}`, `[` and `]`, determine if the input string is valid.",
+      "constraints": "1 <= length(s) <= 10^4",
+      "inputFormat": "A single string s.",
+      "outputFormat": "Print VALID or INVALID.",
+      "sampleTestCases": [
+        {
+          "input": "()[]{}",
+          "expectedOutput": "VALID",
+          "explanation": "All brackets match."
+        },
+        {
+          "input": "(]",
+          "expectedOutput": "INVALID",
+          "explanation": "Mismatched brackets."
+        }
+      ],
+      "hiddenTestCases": [
+        {
+          "input": "([{}])",
+          "expectedOutput": "VALID"
+        },
+        {
+          "input": "((",
+          "expectedOutput": "INVALID"
+        }
+      ],
+      "starterCode": {
+        "c": "#include <stdio.h>\nint main() { printf(\"VALID\"); return 0; }",
+        "cpp": "#include <iostream>\n#include <stack>\n#include <string>\nusing namespace std;\nint main(){\n    string s; cin >> s; stack<char> st; bool ok = true;\n    for(char c : s) {\n        if(c=='(' || c=='{' || c=='[') st.push(c);\n        else {\n            if(st.empty()){ ok=false; break; }\n            char top = st.top(); st.pop();\n            if((c==')' && top!='(') || (c=='}' && top!='{') || (c==']' && top!='[')) { ok=false; break; }\n        }\n    }\n    if(!st.empty()) ok = false;\n    cout << (ok ? \"VALID\" : \"INVALID\");\n    return 0;\n}",
+        "java": "import java.util.*;\npublic class Solution {\n    public static void main(String[] args){\n        Scanner sc = new Scanner(System.in);\n        String s = sc.next();\n        Stack<Character> st = new Stack<>();\n        boolean ok = true;\n        for(char c : s.toCharArray()){\n            if(c=='('||c=='{'||c=='[') st.push(c);\n            else{\n                if(st.isEmpty()){ ok=false; break; }\n                char t=st.pop();\n                if((c==')'&&t!='(')||(c=='}'&&t!='{')||(c==']'&&t!='[')){ ok=false; break; }\n            }\n        }\n        if(!st.isEmpty()) ok=false;\n        System.out.print(ok?\"VALID\":\"INVALID\");\n    }\n}",
+        "python": "import sys\ns = sys.stdin.read().strip()\nm = {')':'(', '}':'{', ']':'['}\nst = []\nok = True\nfor c in s:\n    if c in m.values(): st.append(c)\n    elif c in m:\n        if not st or st.pop() != m[c]: ok = False; break\nif st: ok = False\nprint(\"VALID\" if ok else \"INVALID\")"
+      },
+      "isGraduationProblem": true,
+      "leetcodeUrl": "https://leetcode.com/problems/valid-parentheses/",
+      "suggestedLeetcode": [
+        {
+          "title": "Valid Parentheses (LeetCode #20)",
+          "difficulty": "Easy",
+          "url": "https://leetcode.com/problems/valid-parentheses/"
+        },
+        {
+          "title": "Generate Parentheses (LeetCode #22)",
+          "difficulty": "Medium",
+          "url": "https://leetcode.com/problems/generate-parentheses/"
+        }
+      ]
+    }
+  ],
+  "submissions": [],
+  "notes": [
+    {
+      "_id": "note_01",
+      "createdAt": "2026-09-13T12:56:16.176Z",
+      "updatedAt": "2026-09-13T12:56:16.176Z",
+      "title": "Big-O Asymptotic Analysis & Recurrence Relations",
+      "subject": "DSA Theory",
+      "unit": "Unit 1",
+      "topic": "Arrays",
+      "readTimeMinutes": 6,
+      "collegeExamTip": "Frequent 10-marker in Semester End-Exams: Derive Master's Theorem Case 1, 2, and 3 with real examples.",
+      "content": "## Asymptotic Analysis & Master's Theorem\n\n### 1. Why Time Complexity Matters in College Exams\nExaminers evaluate both your code correctness and the **tight upper bound** (Big-O) representation.\n\n- **O(1)** — Constant time (Array indexing, Hash lookup).\n- **O(log N)** — Logarithmic time (Binary Search).\n- **O(N)** — Linear time (Single pass array traversal).\n- **O(N log N)** — Linearithmic time (Merge Sort, Quick Sort).\n- **O(N^2)** — Quadratic time (Nested loops, Bubble Sort).\n\n### 2. Master's Theorem Shortcut for Recurrences\nFor recurrences: T(n) = a*T(n/b) + f(n)\n1. If f(n) < n^(log_b a), then T(n) = Theta(n^(log_b a))\n2. If f(n) == n^(log_b a), then T(n) = Theta(n^(log_b a) * log n)\n3. If f(n) > n^(log_b a), then T(n) = Theta(f(n))\n\n*Exam Tip: Always state best, average, and worst-case complexities explicitly!*"
+    },
+    {
+      "_id": "note_02",
+      "createdAt": "2026-09-13T12:56:16.178Z",
+      "updatedAt": "2026-09-13T12:56:16.178Z",
+      "title": "Array Memory Layout & Two-Pointer Patterns",
+      "subject": "DSA Practical",
+      "unit": "Unit 1",
+      "topic": "Arrays",
+      "readTimeMinutes": 5,
+      "collegeExamTip": "Common lab viva question: Address calculation formula for 1D and 2D Row-Major vs Column-Major arrays.",
+      "content": "## Array Memory Layout & Two-Pointer Technique\n\n### 1. Memory Calculation Formula\nFor a 1D array with base address B, element size W, lower bound LB:\nAddress(A[i]) = B + (i - LB) * W\n\nFor 2D Array in Row-Major Order:\nAddress(A[i][j]) = B + [(i - LB1) * n + (j - LB2)] * W\n\n### 2. The Two-Pointer Paradigm\nWhenever you encounter reversing an array, two sum on sorted arrays, or container volume, use two pointers moving inward to achieve O(N) time and O(1) auxiliary space."
+    },
+    {
+      "_id": "note_03",
+      "createdAt": "2026-09-13T12:56:16.180Z",
+      "updatedAt": "2026-09-13T12:56:16.180Z",
+      "title": "Stack Applications: Infix to Postfix Conversion",
+      "subject": "DSA Theory",
+      "unit": "Unit 6",
+      "topic": "Stacks/Queues",
+      "readTimeMinutes": 8,
+      "collegeExamTip": "Guaranteed 8-10 marks in End-Sem! Show the step-by-step stack snapshot table for the given expression.",
+      "content": "## Infix to Postfix Expression Conversion\n\n### Operator Precedence & Associativity\n- ^ (Exponentiation): Precedence 3, Right-to-Left\n- * and /: Precedence 2, Left-to-Right\n- + and -: Precedence 1, Left-to-Right\n\n### Algorithm\n1. Scan infix expression from left to right.\n2. Operands go directly to postfix output.\n3. Left parenthesis '(' goes directly onto stack.\n4. Right parenthesis ')' pops stack operators to output until '(' is removed.\n5. Operators pop higher or equal precedence operators, then push themselves.\n6. Pop any remaining operators after end of expression."
+    }
+  ],
+  "papers": [
+    {
+      "_id": "paper_2024_endsem",
+      "createdAt": "2026-09-13T12:56:16.183Z",
+      "updatedAt": "2026-09-13T12:56:16.183Z",
+      "title": "DSA End-Semester University Examination 2024",
+      "subject": "Data Structures & Algorithms",
+      "courseCode": "CS-201",
+      "year": 2024,
+      "examType": "End-Semester",
+      "semester": "Semester 2",
+      "totalMarks": 100,
+      "duration": "3 Hours",
+      "topicsCovered": [
+        "Arrays",
+        "Linked Lists",
+        "Stacks",
+        "Trees",
+        "Sorting"
+      ],
+      "downloadUrl": "https://procode.edu/papers/dsa-endsem-2024.pdf",
+      "description": "Official university end-semester question paper with Section A (Short answers 20m), Section B (Algorithm analysis 40m), Section C (Coding & Traversal derivations 40m)."
+    },
+    {
+      "_id": "paper_2024_midsem",
+      "createdAt": "2026-09-13T12:56:16.186Z",
+      "updatedAt": "2026-09-13T12:56:16.186Z",
+      "title": "DSA Mid-Semester Internal Assessment 2024",
+      "subject": "Data Structures & Algorithms",
+      "courseCode": "CS-201",
+      "year": 2024,
+      "examType": "Mid-Semester",
+      "semester": "Semester 1",
+      "totalMarks": 40,
+      "duration": "1.5 Hours",
+      "topicsCovered": [
+        "Time Complexity",
+        "Arrays",
+        "Recursion",
+        "Searching"
+      ],
+      "downloadUrl": "https://procode.edu/papers/dsa-midsem-2024.pdf",
+      "description": "First internal assessment covering Big-O proofs, Binary Search variants, and Tower of Hanoi recursion tree."
+    },
+    {
+      "_id": "paper_2024_lab",
+      "createdAt": "2026-09-13T12:56:16.187Z",
+      "updatedAt": "2026-09-13T12:56:16.187Z",
+      "title": "DSA Practical Lab Exam & Viva Questions 2024",
+      "subject": "DSA Laboratory",
+      "courseCode": "CS-202P",
+      "year": 2024,
+      "examType": "Lab Exam",
+      "semester": "Semester 2",
+      "totalMarks": 50,
+      "duration": "2 Hours",
+      "topicsCovered": [
+        "C/C++ Pointers",
+        "Linked List Insertion/Deletion",
+        "Queue Using Arrays"
+      ],
+      "downloadUrl": "https://procode.edu/papers/dsa-lab-2024.pdf",
+      "description": "Lab practical question bank with 12 classic viva examination prompts and C/C++ memory management requirements."
+    },
+    {
+      "_id": "paper_2023_endsem",
+      "createdAt": "2026-09-13T12:56:16.190Z",
+      "updatedAt": "2026-09-13T12:56:16.190Z",
+      "title": "DSA End-Semester Examination 2023",
+      "subject": "Data Structures & Algorithms",
+      "courseCode": "CS-201",
+      "year": 2023,
+      "examType": "End-Semester",
+      "semester": "Semester 2",
+      "totalMarks": 100,
+      "duration": "3 Hours",
+      "topicsCovered": [
+        "Graphs",
+        "Binary Search Trees",
+        "Hashing",
+        "QuickSort Partitioning"
+      ],
+      "downloadUrl": "https://procode.edu/papers/dsa-endsem-2023.pdf",
+      "description": "Previous year paper focusing on AVL Trees rotation, Infix-to-Postfix step table, and QuickSort partitioning."
+    }
+  ],
+  "reports": []
+}
