@@ -1,9 +1,0 @@
-﻿{
-  "name": "procode-docs",
-  "version": "1.0.0",
-  "description": "ProCode Documentation & PDF Generator",
-  "main": "generate_pdf.js",
-  "dependencies": {
-    "pdfkit": "^0.16.0"
-  }
-}
